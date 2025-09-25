@@ -42,25 +42,25 @@ const documentCategories: DocumentCategory[] = [
         name: "Hardware-ICD License v1.0",
         description: "Hardware Industry Commons for Defense License",
         type: "Hardware",
-        fileName: "licenses/Hardware-ICD_License_v1.0_May2025.md"
+        fileName: "licenses/Hardware-ICD_License_v1.0_May2025.txt"
       },
       {
         name: "Software-ICD License v1.0",
         description: "Software Industry Commons for Defense License",
         type: "Software",
-        fileName: "licenses/Software-ICD_License_v1.0_May2025.md"
+        fileName: "licenses/Software-ICD_License_v1.0_May2025.txt"
       },
       {
         name: "Data-ICD License v1.0",
         description: "Data Industry Commons for Defense License",
         type: "Data",
-        fileName: "licenses/Data-ICD_License_v1.0_May2025.md"
+        fileName: "licenses/Data-ICD_License_v1.0_May2025.txt"
       },
       {
         name: "AI-ICD License v1.0",
         description: "AI/ML Industry Commons for Defense License",
         type: "AI/ML",
-        fileName: "licenses/AI-ICD_License_v1.0_May2025.md"
+        fileName: "licenses/AI-ICD_License_v1.0_May2025.txt"
       }
     ]
   },
@@ -76,25 +76,25 @@ const documentCategories: DocumentCategory[] = [
         name: "Steering Body Charter",
         description: "Charter establishing the ICD Steering Body governance structure",
         type: "Governance",
-        fileName: "governance/ICD_Steering_Body_Charter_501c6.md"
+        fileName: "governance/ICD_Steering_Body_Charter_501c6.txt"
       },
       {
         name: "Certification Authority Charter",
         description: "Framework for ICD certification and validation processes",
         type: "Governance",
-        fileName: "governance/ICD_Certification_Authority_Charter_v1.0.md"
+        fileName: "governance/ICD_Certification_Authority_Charter_v1.0.txt"
       },
       {
         name: "Coalition Disclosure Tiers",
         description: "Guidelines for information sharing with coalition partners",
         type: "Governance",
-        fileName: "governance/ICD_Coalition_Disclosure_Tiers_v1.0.md"
+        fileName: "governance/ICD_Coalition_Disclosure_Tiers_v1.0.txt"
       },
       {
         name: "Emergency Override Protocols",
         description: "Procedures for emergency access and override situations",
         type: "Governance",
-        fileName: "governance/ICD_Emergency_Override_Protocols_v1.0.md"
+        fileName: "governance/ICD_Emergency_Override_Protocols_v1.0.txt"
       }
     ]
   },
@@ -122,7 +122,7 @@ const documentCategories: DocumentCategory[] = [
         name: "Model Testing Guidance",
         description: "Comprehensive guidance for AI/ML model validation and testing",
         type: "AI/ML",
-        fileName: "technical/Model-Testing-Guidance.md"
+        fileName: "technical/Model-Testing-Guidance.txt"
       }
     ]
   },
@@ -138,25 +138,25 @@ const documentCategories: DocumentCategory[] = [
         name: "Field Deployment Binder",
         description: "Complete guide for field deployment of ICD components",
         type: "Operations",
-        fileName: "operations/Field-Deployment-Binder.md"
+        fileName: "operations/Field-Deployment-Binder.txt"
       },
       {
         name: "Partner Onboarding Kit",
         description: "Materials and procedures for onboarding new ICD partners",
         type: "Operations",
-        fileName: "operations/Partner-Onboarding-Kit.md"
+        fileName: "operations/Partner-Onboarding-Kit.txt"
       },
       {
         name: "FFRDC Onboarding Contract",
         description: "Standard contract template for FFRDC participation",
         type: "Legal",
-        fileName: "operations/FFRDC-Onboarding-Contract.md"
+        fileName: "operations/FFRDC-Onboarding-Contract.txt"
       },
       {
         name: "Red Team Activation Playbook",
         description: "Procedures for security assessment and red team exercises",
         type: "Security",
-        fileName: "operations/Red-Team-Activation-Playbook.md"
+        fileName: "operations/Red-Team-Activation-Playbook.txt"
       }
     ]
   }
