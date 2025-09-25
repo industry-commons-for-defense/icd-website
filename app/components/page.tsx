@@ -171,19 +171,27 @@ export default function ComponentsPage() {
 
   // Function to fetch content from GitHub
   const fetchContent = async (categoryIndex: number, itemIndex: number) => {
+    if (!categories[categoryIndex] || !categories[categoryIndex].items[itemIndex]) {
+      return;
+    }
     const item = categories[categoryIndex].items[itemIndex];
     const contentUrl = `${rawGitHubUrl}/${item.fileName}`;
 
     // Update loading state
-    setCategories(prev => {
-      const newCategories = [...prev];
-      newCategories[categoryIndex].items[itemIndex] = {
-        ...newCategories[categoryIndex].items[itemIndex],
-        loading: true,
-        error: undefined
-      };
-      return newCategories;
-    });
+    setCategories(prev =>
+      prev.map((category, cIndex) =>
+        cIndex === categoryIndex
+          ? {
+              ...category,
+              items: category.items.map((item, iIndex) =>
+                iIndex === itemIndex
+                  ? { ...item, loading: true, error: undefined }
+                  : item
+              )
+            }
+          : category
+      )
+    );
 
     try {
       const response = await fetch(contentUrl);
@@ -195,26 +203,40 @@ export default function ComponentsPage() {
       const content = await response.text();
 
       // Update with fetched content
-      setCategories(prev => {
-        const newCategories = [...prev];
-        newCategories[categoryIndex].items[itemIndex] = {
-          ...newCategories[categoryIndex].items[itemIndex],
-          content,
-          loading: false
-        };
-        return newCategories;
-      });
+      setCategories(prev =>
+        prev.map((category, cIndex) =>
+          cIndex === categoryIndex
+            ? {
+                ...category,
+                items: category.items.map((item, iIndex) =>
+                  iIndex === itemIndex
+                    ? { ...item, content, loading: false }
+                    : item
+                )
+              }
+            : category
+        )
+      );
     } catch (error) {
       // Update with error state
-      setCategories(prev => {
-        const newCategories = [...prev];
-        newCategories[categoryIndex].items[itemIndex] = {
-          ...newCategories[categoryIndex].items[itemIndex],
-          loading: false,
-          error: error instanceof Error ? error.message : "Failed to load content"
-        };
-        return newCategories;
-      });
+      setCategories(prev =>
+        prev.map((category, cIndex) =>
+          cIndex === categoryIndex
+            ? {
+                ...category,
+                items: category.items.map((item, iIndex) =>
+                  iIndex === itemIndex
+                    ? {
+                        ...item,
+                        loading: false,
+                        error: error instanceof Error ? error.message : "Failed to load content"
+                      }
+                    : item
+                )
+              }
+            : category
+        )
+      );
     }
   };
 
@@ -229,9 +251,11 @@ export default function ComponentsPage() {
       newOpenAccordions.add(key);
 
       // Fetch content if not already loaded
-      const item = categories[categoryIndex].items[itemIndex];
-      if (!item.content && !item.loading && !item.error) {
-        fetchContent(categoryIndex, itemIndex);
+      if (categories[categoryIndex] && categories[categoryIndex].items[itemIndex]) {
+        const item = categories[categoryIndex].items[itemIndex];
+        if (!item.content && !item.loading && !item.error) {
+          fetchContent(categoryIndex, itemIndex);
+        }
       }
     }
 
