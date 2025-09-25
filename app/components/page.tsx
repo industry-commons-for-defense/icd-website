@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { FileText, BookOpen, Shield, Settings, Cpu, Database } from "lucide-react";
+import { useState } from "react";
+import { FileText, Settings, Cpu, Database } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
