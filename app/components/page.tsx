@@ -166,8 +166,8 @@ export default function ComponentsPage() {
   const [categories, setCategories] = useState<DocumentCategory[]>(documentCategories);
   const [openAccordions, setOpenAccordions] = useState<Set<string>>(new Set());
 
-  const baseGitHubUrl = "https://github.com/industry-commons-for-defense/icd-artifacts";
-  const rawGitHubUrl = "https://raw.githubusercontent.com/industry-commons-for-defense/icd-artifacts/main";
+  const baseGitHubUrl = "https://github.com/IndustryCommons/icd-artifacts";
+  const rawGitHubUrl = "https://raw.githubusercontent.com/IndustryCommons/icd-artifacts/main";
 
   // Function to fetch content from GitHub
   const fetchContent = async (categoryIndex: number, itemIndex: number) => {
