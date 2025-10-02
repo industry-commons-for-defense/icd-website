@@ -53,7 +53,7 @@ const config: any = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        'display': ['var(--font-playfair)', 'serif'],
+        'display': ['var(--font-source-sans)', 'system-ui', 'sans-serif'],
         'sans': ['var(--font-source-sans)', 'system-ui', 'sans-serif'],
       },
       animation: {

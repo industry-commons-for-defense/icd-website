@@ -1,0 +1,35 @@
+#!/bin/bash
+# Claude Code Aliases for ICD Website
+# Source this file in your shell: source .claude-aliases
+
+# Quick commit and push
+alias claude-push='./scripts/claude-push.sh'
+
+# Alternative shorter version
+alias cpush='./scripts/claude-push.sh'
+
+# Quick status check
+alias cstatus='git status --short'
+
+# Quick branch check
+alias cbranch='git branch --show-current'
+
+# Create worktree shortcuts
+alias claude-frontend='git worktree add ../wt-frontend -b feat/frontend/$(date +%Y%m%d)-update && cd ../wt-frontend'
+alias claude-backend='git worktree add ../wt-backend -b feat/backend/$(date +%Y%m%d)-update && cd ../wt-backend'
+alias claude-test='git worktree add ../wt-testing -b test/coverage/$(date +%Y%m%d) && cd ../wt-testing'
+
+# Conventional commit helpers
+alias cfeat='git commit -m "feat'
+alias cfix='git commit -m "fix'
+alias cdocs='git commit -m "docs'
+alias ctest='git commit -m "test'
+alias cchore='git commit -m "chore'
+
+echo "🤖 Claude aliases loaded! Available commands:"
+echo "  claude-push / cpush - Quick commit and push"
+echo "  cstatus            - Git status"
+echo "  cbranch            - Current branch"
+echo "  claude-frontend    - Create frontend worktree"
+echo "  claude-backend     - Create backend worktree"
+echo "  claude-test        - Create testing worktree"

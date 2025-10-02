@@ -53,7 +53,7 @@ export const designSystem = {
   // Typography scale
   typography: {
     fontFamily: {
-      display: 'var(--font-playfair)',
+      display: 'var(--font-source-sans)',
       body: 'var(--font-source-sans)',
       mono: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
     },

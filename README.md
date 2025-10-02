@@ -19,7 +19,7 @@ This website serves as the primary information hub for the ICD Framework, provid
 
 - **Framework**: Next.js 15 with TypeScript
 - **Styling**: Tailwind CSS with custom design system
-- **Fonts**: Playfair Display (headings) and Source Sans 3 (body text)
+- **Fonts**: Source Sans 3 (all text - headings and body)
 - **Icons**: Lucide React and Heroicons
 - **Deployment**: GitHub Pages with GitHub Actions
 - **License**: SW-ICD License v1.0
@@ -110,7 +110,7 @@ npm run export
 
 ### Typography
 
-- **Display Font**: Playfair Display (elegant serif for headings)
+- **Display Font**: Source Sans 3 (clean sans-serif for all text)
 - **Body Font**: Source Sans 3 (clean sans-serif for content)
 
 ### Responsive Breakpoints

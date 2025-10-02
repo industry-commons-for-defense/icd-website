@@ -251,14 +251,25 @@ export default function ContactPage() {
                 </label>
               </div>
 
-              <Button
-                type="submit"
-                variant="primary"
-                size="lg"
-                className="w-full"
-              >
-                Send Message
-              </Button>
+              <div className="flex gap-4">
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  className="flex-1"
+                >
+                  Send Message
+                </Button>
+                <Button
+                  href="/waitlist"
+                  variant="accent"
+                  color="gold"
+                  size="lg"
+                  className="flex-1"
+                >
+                  Apply to Waitlist
+                </Button>
+              </div>
             </form>
           </Card>
         </Container>

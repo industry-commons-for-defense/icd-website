@@ -45,6 +45,100 @@ Enhancement suggestions are welcome. Please provide:
 - Ensure all tests pass
 - Keep pull requests focused and atomic
 
+## Branch Management Strategy
+
+### Quick Reference
+
+1. **Always work in feature branches**
+2. **Test locally before pushing**
+3. **Merge locally when possible**
+4. **Use PRs only when code review is needed**
+
+### Recommended Workflow
+
+#### For Small Changes (No Review Needed)
+
+```bash
+# 1. Create feature branch
+git checkout -b feat/your-feature
+
+# 2. Make changes and test
+npm test
+npm run lint
+npm run build
+
+# 3. Commit with conventional commits
+git add .
+git commit -m "feat: add new feature"
+
+# 4. Update main and merge locally
+git checkout main
+git pull origin main
+git merge feat/your-feature --no-ff
+
+# 5. Push to main
+git push origin main
+
+# 6. Clean up
+git branch -d feat/your-feature
+```
+
+#### For Changes Requiring Review
+
+```bash
+# 1. Create feature branch
+git checkout -b feat/your-feature
+
+# 2. Make changes and commit
+git add .
+git commit -m "feat: add new feature"
+
+# 3. Push branch and create PR
+git push -u origin feat/your-feature
+gh pr create --fill
+
+# 4. After PR approval and merge
+git checkout main
+git pull origin main
+git branch -d feat/your-feature
+```
+
+### Branch Naming Convention
+
+Use descriptive branch names with appropriate prefixes:
+
+```
+feat/user-authentication
+fix/header-contrast-issue
+docs/api-documentation
+refactor/component-structure
+chore/update-dependencies
+```
+
+### Avoiding Branch Proliferation
+
+1. **Merge or delete branches promptly**
+   ```bash
+   # After merging
+   git branch -d feature-branch
+   git push origin --delete feature-branch
+   ```
+
+2. **Regular cleanup**
+   ```bash
+   # Remove merged local branches
+   git branch --merged main | grep -v main | xargs -n 1 git branch -d
+   
+   # Prune remote tracking branches
+   git remote prune origin
+   ```
+
+3. **Use squash for small changes**
+   ```bash
+   # Squash commits before merging
+   git rebase -i main
+   ```
+
 ## Development Guidelines
 
 ### Prerequisites
@@ -88,23 +182,42 @@ Enhancement suggestions are welcome. Please provide:
 
 ### Commit Messages
 
-Use clear, descriptive commit messages:
+Follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
 
 ```
-type(scope): brief description
+<type>(<scope>): <subject>
 
-Longer description if necessary, explaining what and why,
-not how.
+<body>
+
+<footer>
 ```
 
-Types:
+**Types:**
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
-- `style`: Formatting changes
+- `style`: Code style (formatting, semicolons, etc)
 - `refactor`: Code refactoring
-- `test`: Adding tests
+- `test`: Adding/updating tests
 - `chore`: Maintenance tasks
+- `perf`: Performance improvements
+
+**Scopes (ICD-specific):**
+- `waitlist`: Waitlist functionality
+- `ui`: User interface changes
+- `api`: API endpoints
+- `auth`: Authentication
+- `db`: Database changes
+- `deploy`: Deployment configuration
+- `a11y`: Accessibility improvements
+- `test`: Testing infrastructure
+
+**Examples:**
+```bash
+git commit -m "feat(ui): add interactive join page with role selection"
+git commit -m "fix(waitlist): resolve Firebase connection timeout"
+git commit -m "docs(workflow): update branch management guidelines"
+```
 
 ### Content Guidelines
 

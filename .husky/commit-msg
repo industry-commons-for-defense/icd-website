@@ -1,0 +1,65 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Conventional Commits Validation Hook
+# Ensures all commits follow the conventional commits specification
+
+commit_regex='^(feat|fix|docs|style|refactor|perf|test|chore)(\([a-zA-Z0-9_-]+\))?: .{1,72}$'
+error_msg="❌ Commit message must follow Conventional Commits format!
+
+Format: <type>(<scope>): <subject>
+
+Allowed types:
+  - feat:     A new feature
+  - fix:      A bug fix
+  - docs:     Documentation only changes
+  - style:    Changes that do not affect code meaning (formatting, etc)
+  - refactor: Code change that neither fixes a bug nor adds a feature
+  - perf:     Performance improvement
+  - test:     Adding missing tests
+  - chore:    Changes to build process or auxiliary tools
+
+Required scopes for ICD Website:
+  - waitlist: Waitlist feature
+  - api:      Backend API
+  - ui:       Frontend components
+  - auth:     Authentication
+  - db:       Database
+  - deploy:   Deployment
+  - a11y:     Accessibility
+  - test:     Testing
+
+Examples:
+  ✅ feat(waitlist): add email validation to signup form
+  ✅ fix(ui): correct button contrast ratio for WCAG compliance
+  ✅ test(api): add integration tests for waitlist endpoint
+  
+  ❌ fix: add waitlist page (missing scope)
+  ❌ Fixed stuff (not conventional format)
+  ❌ feat add feature (missing colon and parentheses)
+
+Your commit message:"
+
+# Read the commit message
+commit_msg=$(cat "$1")
+
+# Check if the commit message matches the pattern
+if ! echo "$commit_msg" | grep -qE "$commit_regex"; then
+    echo "$error_msg"
+    echo "$commit_msg"
+    echo ""
+    echo "Please fix your commit message and try again."
+    echo "Tip: Use 'git commit --amend' to edit the message"
+    exit 1
+fi
+
+# Check commit message length (first line should be <= 72 chars)
+first_line=$(echo "$commit_msg" | head -n1)
+if [ ${#first_line} -gt 72 ]; then
+    echo "❌ Commit subject line is too long (${#first_line} chars, max 72)"
+    echo "Please shorten your commit message subject line."
+    exit 1
+fi
+
+# Success
+exit 0

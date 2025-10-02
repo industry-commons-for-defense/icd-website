@@ -1,5 +1,27 @@
 # Claude Development Guidelines for ICD Website
 
+## Multi-Agent Development Approach
+
+This project uses specialized agent roles for different aspects of development. See `AGENTS.md` for detailed role definitions:
+
+- **Frontend Agent**: UI/UX development, React components, user-facing features
+- **Backend Agent**: API endpoints, data processing, server-side logic
+- **Testing Agent**: Quality assurance, test coverage, validation
+- **DevOps Agent**: Deployment, infrastructure, production operations
+- **Accessibility Agent**: WCAG compliance, universal usability
+
+When working on features, invoke the appropriate agent role to ensure focused, high-quality development.
+
+## Current Priority: Waitlist Implementation
+
+The website currently has broken `/waitlist` links throughout. This needs immediate attention:
+
+1. **Backend Infrastructure**: Set up API endpoint and database for waitlist submissions
+2. **Frontend Page**: Create the missing `/app/waitlist/page.tsx`
+3. **Form Handling**: Replace mailto links with proper API integration
+4. **Testing**: Comprehensive test coverage for the new functionality
+5. **Deployment**: Configure backend hosting (currently static-only)
+
 ## Quality Standards & Testing Protocol
 
 ### Pre-Commit Requirements
@@ -19,6 +41,58 @@ Before any new features, fix these existing problems:
 - [ ] Missing "Secure Collaboration" Shield icon in Core Components
 - [ ] Footer text contrast still insufficient against dark background
 - [ ] ICD custom colors not rendering consistently across components
+- [ ] **CRITICAL**: Waitlist endpoint missing - all `/waitlist` links return 404
+- [ ] Contact form uses mailto instead of proper API endpoint
+- [ ] No backend infrastructure for form submissions
+
+### Agent Workflow for Waitlist Implementation
+
+When implementing the waitlist feature, follow this agent-based workflow:
+
+1. **Backend Agent First**:
+   ```bash
+   # Create API infrastructure
+   - Set up /api/waitlist endpoint
+   - Configure database (PostgreSQL/Supabase recommended)
+   - Implement validation and rate limiting
+   - Set up email notifications
+   ```
+
+2. **Frontend Agent Second**:
+   ```bash
+   # Create user interface
+   - Build /app/waitlist/page.tsx
+   - Create reusable form components
+   - Implement client-side validation
+   - Add loading/success/error states
+   ```
+
+3. **Testing Agent Third**:
+   ```bash
+   # Validate functionality
+   - Unit test all new components
+   - Integration test API endpoints
+   - E2E test the full user flow
+   - Performance test form submission
+   ```
+
+4. **Accessibility Agent Fourth**:
+   ```bash
+   # Ensure universal access
+   - Audit form accessibility
+   - Test keyboard navigation
+   - Verify screen reader compatibility
+   - Check mobile usability
+   ```
+
+5. **DevOps Agent Last**:
+   ```bash
+   # Deploy to production
+   - Set up backend hosting
+   - Configure environment variables
+   - Deploy and monitor
+   - Set up error tracking
+   ```
 
 ## Testing Implementation Strategy
 
@@ -333,25 +407,107 @@ test('homepage passes accessibility audit', async ({ page }) => {
 - Accessibility audits would flag WCAG violations
 - Visual regression tests would show readability issues
 
+## Waitlist Technical Implementation Guide
+
+### Backend Architecture Options
+
+Since this is currently a static site, choose one of these approaches:
+
+1. **Serverless Functions** (Recommended for simplicity):
+   ```typescript
+   // app/api/waitlist/route.ts
+   import { NextRequest, NextResponse } from 'next/server';
+   
+   export async function POST(request: NextRequest) {
+     // Handle waitlist submission
+   }
+   ```
+
+2. **External Backend Service**:
+   - Supabase (includes database + auth)
+   - Railway/Render (for custom backend)
+   - PlanetScale (for database only)
+
+3. **Third-party Services**:
+   - ConvertKit/Mailchimp (email-first approach)
+   - Airtable (simple database)
+   - Google Sheets API (quick MVP)
+
+### Frontend Implementation Pattern
+
+```typescript
+// app/waitlist/page.tsx
+'use client';
+
+import { useState } from 'react';
+import { WaitlistForm } from '@/components/forms/WaitlistForm';
+import { useWaitlistSubmission } from '@/hooks/useWaitlistSubmission';
+
+export default function WaitlistPage() {
+  const { submit, isLoading, error, success } = useWaitlistSubmission();
+  
+  return (
+    <div className="container mx-auto py-16">
+      <h1 className="text-4xl font-display text-primary-900">
+        Join the ICD Waitlist
+      </h1>
+      <WaitlistForm 
+        onSubmit={submit}
+        isLoading={isLoading}
+        error={error}
+        success={success}
+      />
+    </div>
+  );
+}
+```
+
+### Database Schema
+
+```sql
+-- Waitlist entries table
+CREATE TABLE waitlist (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  first_name VARCHAR(100),
+  last_name VARCHAR(100),
+  organization VARCHAR(255),
+  role VARCHAR(100),
+  interest_areas TEXT[],
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  verified BOOLEAN DEFAULT FALSE,
+  verification_token VARCHAR(255),
+  ip_address INET,
+  user_agent TEXT
+);
+
+-- Indexes for performance
+CREATE INDEX idx_waitlist_email ON waitlist(email);
+CREATE INDEX idx_waitlist_created_at ON waitlist(created_at);
+```
+
 ## Implementation Priority
 
 1. **Immediate (This Sprint)**:
-   - Fix existing icon and contrast issues
-   - Set up basic Jest + Testing Library
-   - Create component smoke tests
-   - Add build validation to workflow
+   - Set up backend infrastructure for waitlist
+   - Create /app/waitlist/page.tsx
+   - Implement form submission flow
+   - Fix broken /waitlist links throughout site
+   - Add basic form validation
 
 2. **Short Term (Next Sprint)**:
-   - Add accessibility testing with axe
-   - Implement visual regression testing
-   - Set up pre-commit hooks
-   - Create comprehensive component tests
+   - Add email verification
+   - Implement rate limiting
+   - Create admin dashboard for waitlist management
+   - Add comprehensive tests
+   - Set up monitoring/alerts
 
 3. **Medium Term (Following Sprints)**:
-   - Add Storybook for component documentation
-   - Implement E2E testing with Playwright
-   - Set up performance monitoring
-   - Add cross-browser testing
+   - Add analytics tracking
+   - Implement A/B testing for conversion
+   - Create email automation sequences
+   - Build waitlist segmentation features
+   - Add export functionality
 
 ## Brand Specification Alignment
 

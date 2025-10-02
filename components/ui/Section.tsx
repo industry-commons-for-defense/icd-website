@@ -20,8 +20,8 @@ export default function Section({
   const bgClasses = {
     white: 'bg-white',
     gray: 'bg-neutral-50',
-    gradient: 'bg-gradient-to-br from-primary-950 via-primary-900 to-primary-950 hero-high-contrast relative overflow-hidden',
-    dark: 'bg-neutral-900 text-white',
+    gradient: 'bg-gradient-to-br from-primary-950 via-primary-900 to-primary-950 hero-high-contrast dark-section relative overflow-hidden',
+    dark: 'bg-neutral-900 text-white dark-section',
   };
 
   return (

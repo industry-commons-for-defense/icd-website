@@ -1,0 +1,44 @@
+# <type>(<scope>): <subject>
+# |<----   Preferably using up to 50 chars   ---->|<------------------->|
+#
+# Example:
+# feat(waitlist): add email validation to signup form
+
+# (Optional) Explain why this change is being made
+# |<----   Try To Limit Each Line to a Maximum Of 72 Characters   ---->|
+
+# (Optional) Provide links or keys to any relevant tickets, articles or other resources
+# Example: Closes #23
+
+# --- COMMIT END ---
+# Type can be 
+#    feat     (new feature)
+#    fix      (bug fix)
+#    docs     (changes to documentation)
+#    style    (formatting, missing semi colons, etc; no code change)
+#    refactor (refactoring production code)
+#    test     (adding missing tests, refactoring tests; no production code change)
+#    chore    (updating build tasks, package manager configs, etc; no production code change)
+#    perf     (performance improvements)
+#
+# Scope can be
+#    waitlist (waitlist feature)
+#    api      (backend API) 
+#    ui       (frontend components)
+#    auth     (authentication)
+#    db       (database)
+#    deploy   (deployment)
+#    a11y     (accessibility)
+#    test     (testing infrastructure)
+#
+# Subject should use imperative, present tense: "change" not "changed" nor "changes"
+# No dot (.) at the end of the subject line
+#
+# Body should include motivation for the change and contrasts with previous behavior
+# Use imperative, present tense: "change" not "changed" nor "changes"
+#
+# Footer should contain closing reference to an issue if applicable
+# BREAKING CHANGE: should start with "BREAKING CHANGE:" followed by explanation
+#
+# For more information: https://www.conventionalcommits.org/en/v1.0.0/
+# --------------------

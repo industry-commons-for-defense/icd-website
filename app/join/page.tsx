@@ -1,324 +1,300 @@
-import Button from "@/components/ui/Button";
+'use client';
+
+import React, { useMemo, useState } from "react";
 import Section from "@/components/ui/Section";
 
-const membershipTiers = [
+const BRAND = "#6D28D9"; // purple emphasis
+
+const categories = [
   {
-    category: "Small Nontraditional",
-    annualDues: "$30,000",
-    description: "Emerging defense contractors and innovative technology companies with limited defense portfolio",
-    targetCount: 3
+    id: "industry",
+    title: "Industry Members",
+    description:
+      "Defense primes, integrators, startups, and non-profits. Provide technology, code, or data; drive pilots; shape direction.",
+    bullets: [
+      "Eligible for Steering Board (10–20)",
+      "Early access to reusable components & CUI toolkits",
+      "Visibility in the Defense Commons community"
+    ],
+    subtext: "Enterprise/Primes · Growth Companies · Startups · Non-profits & FFRDCs",
+    cta: "Join the Waitlist",
+    color: `bg-[${BRAND}]`, borderColor: `border-[${BRAND}]`, icon: "⚡"
   },
   {
-    category: "Small Traditional",
-    annualDues: "$45,000",
-    description: "Established defense contractors with focused capabilities and proven track record",
-    targetCount: 3
-  },
-  {
-    category: "Large Nontraditional",
-    annualDues: "$60,000",
-    description: "Major technology companies entering or expanding in the defense market",
-    targetCount: 3
-  },
-  {
-    category: "Large Traditional",
-    annualDues: "$75,000",
-    description: "Major defense contractors with established defense portfolios and extensive capabilities",
-    targetCount: 3
-  },
-  {
-    category: "UARCs & FFRDCs",
-    annualDues: "$75,000",
-    description: "University Affiliated Research Centers and Federally Funded Research & Development Centers",
-    targetCount: 3
+    id: "government",
+    title: "Government Partners",
+    description:
+      "Departments, agencies, services, labs, and innovation orgs. Adopt the Charter, use components, reduce duplication, accelerate fielding.",
+    bullets: [
+      "Pilot program participation",
+      "Technical steering & governance input",
+      "Alignment with secure, modular standards (e.g., CMMC)"
+    ],
+    subtext: "Departments/Services · Agencies · Orgs/Commands",
+    cta: "Join Today",
+    color: `bg-[${BRAND}]`, borderColor: `border-[${BRAND}]`, icon: "🏛️"
   }
 ];
 
-// Rate escalation projections (2% notional rate)
-const rateEscalationTable = [
-  { category: "Small Nontraditional", base: 30000, rates: [2.0, 2.0, 2.0, 2.0, 2.0] },
-  { category: "Small Traditional", base: 45000, rates: [2.0, 2.0, 2.0, 2.0, 2.0] },
-  { category: "Large Nontraditional", base: 60000, rates: [2.0, 2.0, 2.0, 2.0, 2.0] },
-  { category: "Large Traditional", base: 75000, rates: [2.0, 2.0, 2.0, 2.0, 2.0] },
-  { category: "UARCs & FFRDCs", base: 75000, rates: [2.0, 2.0, 2.0, 2.0, 2.0] }
+const inquiryOptions = [
+  "Membership Information",
+  "Consulting Services",
+  "Partnership Opportunities",
+  "Pilot Program Interest",
+  "Technical Questions",
+  "Media Inquiry",
+  "Feedback",
+  "Other"
 ];
 
-const formatCurrency = (amount: number) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(amount);
-};
+function StepCrumbs({ step = 1 }: { step?: 1 | 2 | 3 }) {
+  const labels = ["1. Start", "2. Details", "3. Submit"];
+  return (
+    <nav className="mb-5 flex items-center gap-2 text-xs text-gray-600" aria-label="Onboarding steps">
+      {labels.map((label, i) => (
+        <span key={label} className="flex items-center gap-2">
+          <span
+            className={`inline-flex h-6 items-center rounded-md px-2 ${i + 1 <= step ? "bg-gray-100 font-medium" : "bg-gray-50"}`}
+          >
+            {label}
+          </span>
+          {i < labels.length - 1 && <span aria-hidden>→</span>}
+        </span>
+      ))}
+    </nav>
+  );
+}
 
-const calculateProjectedDues = (baseAmount: number, rates: number[]) => {
-  let current = baseAmount;
-  const projections = [current];
-
-  rates.forEach(rate => {
-    current = Math.round(current * (1 + rate / 100));
-    projections.push(current);
+function Sidebar({ active, onClose }: { active: typeof categories[number]; onClose: () => void }) {
+  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [selectedRole, setSelectedRole] = useState<string>(active.id === "government" ? "enduser" : "contributor");
+  const [form, setForm] = useState({
+    first: "",
+    last: "",
+    email: "",
+    org: "",
+    inquiry: inquiryOptions[0],
+    message: "",
+    consent: false,
   });
 
-  return projections;
-};
+  const update = (k: keyof typeof form, v: string | boolean) => setForm((f) => ({ ...f, [k]: v }));
+  // const canSubmit = form.first && form.last && form.email && form.inquiry && form.message && form.consent;
 
-const memberBenefits = [
-  "Promote IP-protected technology sharing within the DIB and with government",
-  "Lower barriers to defense sector entry for all member organizations",
-  "Enable reuse of CUI and classified technology designs across the ecosystem",
-  "Increase innovation velocity for the Defense Industrial Base",
-  "Participate in setting platform access costs for Community members",
-  "Receive credits toward next year's dues from excess revenues",
-  "Influence annual spend plan and strategic direction",
-  "Access to shared repositories and collaborative development frameworks"
-];
+  return (
+    <aside className="lg:sticky lg:top-6 lg:max-h-[calc(100vh-4rem)] lg:overflow-auto transition-all">
+      <div className={`rounded-2xl border ${active.borderColor} border-t-4 bg-white p-6 shadow-sm`}>
+        <div className="mb-4 flex items-center justify-between">
+          <h3 className="text-lg font-semibold">Quick Onboarding</h3>
+          <button
+            onClick={onClose}
+            className="rounded-md border border-gray-200 px-2 py-1 text-xs text-gray-600 hover:bg-gray-50"
+            aria-label="Hide panel"
+            title="Hide panel"
+          >
+            × Hide
+          </button>
+        </div>
 
-const membershipTerms = [
-  {
-    term: "Membership Duration",
-    description: "Steering Body members can elect to continue membership for no more than 3 consecutive years"
-  },
-  {
-    term: "Annual Escalation",
-    description: "Dues escalate at a minimum of 2% or the Federal Reserve's published prime rate at time of renewal, whichever is higher"
-  },
-  {
-    term: "Governance Rights",
-    description: "Steering Body members approve annual spend plan and set platform access costs for Community members"
-  },
-  {
-    term: "Revenue Sharing",
-    description: "Excess revenues after capital investment and operating costs are returned to members as credits toward next year's dues"
-  },
-  {
-    term: "Target Composition",
-    description: "ICD Foundation aims to recruit 15 dues-paying Steering Body members with balanced representation across all categories"
-  }
-];
+        <StepCrumbs step={step} />
+
+        {active.id === "industry" ? (
+          <p className="mb-4 text-xs text-gray-700">
+            <span className="font-semibold" style={{ color: BRAND }}>Heads up:</span> Industry applications will be waitlisted until Steering Board members are selected.
+          </p>
+        ) : (
+          <p className="mb-4 text-xs text-gray-700">
+            <span className="font-semibold" style={{ color: BRAND }}>Note:</span> Government partners can join today and participate in pilots and governance input.
+          </p>
+        )}
+
+        <fieldset className="mb-4">
+          <legend className="block text-sm font-medium">Select your role</legend>
+          <div className="mt-2 grid grid-cols-1 gap-2">
+            {[
+              { id: "enduser", label: "End User", desc: "Consume resources and deploy components." },
+              { id: "contributor", label: "Contributor", desc: "Provide data, code, or reusable modules." },
+              { id: "steering", label: "Steering Board", desc: "Limited to 10–20 Industry Members." }
+            ].map((r) => {
+              const disabled = active.id === "government" && r.id === "steering";
+              return (
+                <label key={r.id} className={`flex items-start gap-2 rounded-lg border p-2 text-sm ${disabled ? "opacity-50" : ""}`}>
+                  <input
+                    type="radio"
+                    name="role"
+                    value={r.id}
+                    disabled={disabled}
+                    checked={selectedRole === r.id}
+                    onChange={() => setSelectedRole(r.id)}
+                    className="mt-0.5"
+                  />
+                  <div>
+                    <div className="font-medium">{r.label}</div>
+                    <div className="text-gray-600">{r.desc}{disabled ? " (Industry only)" : ""}</div>
+                  </div>
+                </label>
+              );
+            })}
+          </div>
+        </fieldset>
+
+        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm font-medium" htmlFor="first">First Name *</label>
+              <input id="first" className="mt-1 w-full rounded-md border border-gray-300 p-2 text-sm" value={form.first} onChange={(e) => update("first", e.target.value)} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium" htmlFor="last">Last Name *</label>
+              <input id="last" className="mt-1 w-full rounded-md border border-gray-300 p-2 text-sm" value={form.last} onChange={(e) => update("last", e.target.value)} />
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium" htmlFor="email">Email Address *</label>
+            <input id="email" type="email" className="mt-1 w-full rounded-md border border-gray-300 p-2 text-sm" value={form.email} onChange={(e) => update("email", e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-sm font-medium" htmlFor="org">Organization</label>
+            <input id="org" className="mt-1 w-full rounded-md border border-gray-300 p-2 text-sm" value={form.org} onChange={(e) => update("org", e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-sm font-medium" htmlFor="inq">Inquiry Type *</label>
+            <select id="inq" className="mt-1 w-full rounded-md border border-gray-300 p-2 text-sm" value={form.inquiry} onChange={(e) => update("inquiry", e.target.value)}>
+              {inquiryOptions.map((o) => (
+                <option key={o} value={o}>{o}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium" htmlFor="msg">Message *</label>
+            <textarea id="msg" rows={5} className="mt-1 w-full rounded-md border border-gray-300 p-2 text-sm" value={form.message} onChange={(e) => update("message", e.target.value)} />
+          </div>
+          <label className="flex items-start gap-2 text-xs text-gray-700">
+            <input type="checkbox" className="mt-1" checked={form.consent} onChange={(e) => update("consent", e.target.checked)} />
+            <span>I consent to being contacted by the ICD Foundation regarding my inquiry. *</span>
+          </label>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setStep((s) => (s < 3 ? ((s as number) + 1) as 1 | 2 | 3 : s))}
+              className={`rounded-lg px-4 py-2 font-medium text-white`}
+              style={{ backgroundColor: BRAND }}
+            >
+              {active.id === 'government' ? 'Join Today' : 'Join the Waitlist'}
+            </button>
+            <a
+              href="#faq"
+              className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              Learn more
+            </a>
+          </div>
+        </form>
+      </div>
+    </aside>
+  );
+}
 
 export default function JoinPage() {
+  const [selected, setSelected] = useState<string | null>(null);
+  const active = useMemo(() => categories.find((c) => c.id === selected) ?? null, [selected]);
+
+  const handleCardActivate = (id: string) => setSelected(id);
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <Section variant="spacious" background="gradient" className="text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-6 tracking-tight text-white">
-            Join the ICD Steering Body
-          </h1>
-          <p className="text-lg sm:text-xl mb-8 font-light leading-relaxed text-white/95">
-            Become a founding member of the Industry Commons for Defense and help shape the future of collaborative defense technology development.
-          </p>
-          <Button
-            href="/contact"
-            variant="secondary"
-            size="lg"
-            className="bg-icd-gold text-primary-950 hover:bg-yellow-400 shadow-xl font-semibold transition-all duration-200 hero-accent-glow"
-          >
-            Apply for Membership
-          </Button>
-        </div>
-      </Section>
-
-      {/* Membership Tiers */}
-      <Section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-4">
-              ICD Steering Body Membership Tiers
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Structured membership categories designed to ensure balanced representation across the Defense Industrial Base
+      <Section className="py-10">
+        <div className="max-w-6xl mx-auto">
+          <header className="mb-8 text-center">
+            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Contact / Waitlist</p>
+            <h1 className="mt-1 text-3xl font-display font-bold">Join Industry Commons for Defense</h1>
+            <p className="mt-3 mx-auto max-w-2xl text-sm text-gray-600">
+              Join the collaborative, industry led framework that&apos;s transforming technology for US national security.
             </p>
-          </div>
+          </header>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8">
-            {membershipTiers.slice(0, 4).map((tier) => (
-              <div key={tier.category} className="bg-white rounded-lg shadow-lg p-8 border-t-4 border-primary-800">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-display font-bold text-gray-900">
-                    {tier.category}
-                  </h3>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-primary-800">
-                      {tier.annualDues}
-                    </div>
-                    <div className="text-sm text-gray-600">per year</div>
+          <div className={`grid gap-6 ${active ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
+            <div className={`lg:col-span-2 grid gap-6 ${active ? "sm:grid-cols-1" : "sm:grid-cols-2"}`}>
+              {categories.map((c) => (
+                <div
+                  key={c.id}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => handleCardActivate(c.id)}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleCardActivate(c.id)}
+                  className={`cursor-pointer select-none rounded-2xl border ${c.borderColor} border-t-4 bg-white p-6 shadow-sm transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2`}
+                  style={{ boxShadow: selected === c.id ? "0 0 0 2px rgba(109,40,217,0.5)" : undefined }}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 text-lg">{c.icon}</div>
+                    <h2 className="text-xl font-display font-semibold">{c.title}</h2>
+                  </div>
+                  <p className="mt-2 text-sm text-gray-600">{c.description}</p>
+                  <ul className="mt-4 space-y-1.5 text-sm text-gray-800">
+                    {c.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2">
+                        <span aria-hidden>✓</span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-3 text-xs text-gray-500">{c.subtext}</p>
+                  <div className="mt-5 flex flex-wrap items-center gap-2">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleCardActivate(c.id); }}
+                      className={`rounded-xl px-4 py-2 font-medium text-white`}
+                      style={{ backgroundColor: BRAND }}
+                    >
+                      {c.cta}
+                    </button>
+                    <a
+                      href="#faq"
+                      onClick={(e) => e.stopPropagation()}
+                      className="rounded-xl border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                    >
+                      Learn more
+                    </a>
                   </div>
                 </div>
-                <p className="text-gray-600 mb-4">{tier.description}</p>
-                <div className="flex items-center text-sm text-gray-500">
-                  <span className="bg-primary-100 text-primary-800 px-2 py-1 rounded-full">
-                    Target: {tier.targetCount} members
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* UARCs & FFRDCs Card - Separate below */}
-          <div className="mt-8 max-w-2xl mx-auto">
-            <div className="bg-white rounded-lg shadow-lg p-8 border-t-4 border-primary-800">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-display font-bold text-gray-900">
-                  {membershipTiers[4].category}
-                </h3>
-                <div className="text-right">
-                  <div className="text-2xl font-bold text-primary-800">
-                    {membershipTiers[4].annualDues}
-                  </div>
-                  <div className="text-sm text-gray-600">per year</div>
-                </div>
-              </div>
-              <p className="text-gray-600 mb-4">{membershipTiers[4].description}</p>
-              <div className="flex items-center text-sm text-gray-500">
-                <span className="bg-primary-100 text-primary-800 px-2 py-1 rounded-full">
-                  Target: {membershipTiers[4].targetCount} members
-                </span>
-              </div>
+              ))}
             </div>
+
+            {active && (
+              <Sidebar active={active} onClose={() => setSelected(null)} />
+            )}
           </div>
         </div>
       </Section>
 
-      {/* Annual Escalation Policy */}
-      <Section className="py-16 bg-yellow-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-4">
-              Projected Escalation Schedule
-            </h2>
-          </div>
-
-          {/* Rate Escalation Table */}
-          <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead style={{backgroundColor: '#2e1065'}} className="text-white">
-                  <tr>
-                    <th className="px-8 py-6 text-left font-bold text-lg tracking-wide text-white">Membership Category</th>
-                    <th className="px-6 py-6 text-center font-bold text-base text-white bg-icd-gold bg-opacity-20 border-l-2 border-r-2 border-icd-gold">2025</th>
-                    <th className="px-6 py-6 text-center font-bold text-base text-white">2026</th>
-                    <th className="px-6 py-6 text-center font-bold text-base text-white">2027</th>
-                    <th className="px-6 py-6 text-center font-bold text-base text-white">2028</th>
-                    <th className="px-6 py-6 text-center font-bold text-base text-white">2029</th>
-                    <th className="px-6 py-6 text-center font-bold text-base text-white">2030</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rateEscalationTable.map((row, index) => {
-                    const projections = calculateProjectedDues(row.base, row.rates);
-                    return (
-                      <tr key={row.category} className={index % 2 === 0 ? "bg-gray-50 hover:bg-gray-100" : "bg-white hover:bg-gray-50"}>
-                        <td className="px-8 py-5 font-bold text-lg text-primary-900 bg-primary-50 border-r-2 border-primary-200">{row.category}</td>
-                        {projections.map((amount, yearIndex) => (
-                          <td key={yearIndex} className={yearIndex === 0 ? "px-6 py-5 text-center font-bold text-base text-gray-900 bg-icd-gold bg-opacity-10 border-l-2 border-r-2 border-icd-gold" : "px-6 py-5 text-center font-bold text-base text-gray-900"}>
-                            {formatCurrency(amount)}
-                          </td>
-                        ))}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div className="mt-8 grid md:grid-cols-2 gap-6">
-            <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
-              <h3 className="text-lg font-semibold text-blue-800 mb-2">Rate Determination</h3>
-              <p className="text-blue-700 text-sm">
-                Annual escalation is determined at membership renewal by comparing the 2% minimum rate with the Federal Reserve&apos;s published prime rate, applying whichever is higher.
-              </p>
-            </div>
-            <div className="bg-green-50 rounded-lg p-6 border border-green-200">
-              <h3 className="text-lg font-semibold text-green-800 mb-2">Revenue Sharing</h3>
-              <p className="text-green-700 text-sm">
-                Excess revenues after capital investment and operating costs are returned to members as credits toward the following year&apos;s dues, effectively reducing net costs.
-              </p>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Member Benefits */}
+      {/* FAQ Section */}
       <Section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-4">
-              Steering Body Member Benefits
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Join the collaborative framework that&apos;s transforming defense technology development
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {memberBenefits.map((benefit, index) => (
-              <div key={index} className="flex items-start">
-                <span className="text-icd-green mr-3 mt-1 text-xl">✓</span>
-                <p className="text-gray-700">{benefit}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* Terms and Rules */}
-      <Section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-4">
-              Membership Terms & Governance
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Clear guidelines ensuring effective governance and sustainable growth
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            {membershipTerms.map((item, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  {item.term}
-                </h3>
-                <p className="text-gray-600">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* CTA Section */}
-      <Section variant="compact" background="gradient" className="text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl lg:text-4xl font-display font-bold mb-4 text-white">
-            Ready to Transform Defense Technology?
-          </h2>
-          <p className="text-xl mb-8 font-light text-white/95">
-            Join the ICD Steering Body and help establish the foundation for collaborative defense innovation.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button
-              href="/contact"
-              variant="secondary"
-              size="lg"
-              className="bg-icd-gold text-primary-950 hover:bg-yellow-400 shadow-xl font-semibold transition-all duration-200 hero-accent-glow"
-            >
-              Apply Now
-            </Button>
-            <Button
-              href="/framework"
-              variant="secondary"
-              size="lg"
-              className="bg-transparent border-2 border-white hover:bg-white hover:text-primary-950 shadow-xl font-semibold transition-all duration-200 btn-secondary-on-dark"
-            >
-              Learn More
-            </Button>
-          </div>
+        <div className="max-w-6xl mx-auto">
+          <section id="faq">
+            <h2 className="text-2xl font-display font-bold text-center mb-6">Frequently Asked Questions</h2>
+            <div className="mx-auto grid max-w-4xl gap-4">
+              <details className="rounded-xl border border-gray-200 bg-white p-4">
+                <summary className="cursor-pointer select-none text-sm font-semibold">What is Industry Commons for Defense?</summary>
+                <p className="mt-2 text-sm text-gray-700">A neutral, nonprofit-led framework that enables government and industry to build software together under a shared charter—protecting IP, speeding delivery, and reducing duplication.</p>
+              </details>
+              <details className="rounded-xl border border-gray-200 bg-white p-4">
+                <summary className="cursor-pointer select-none text-sm font-semibold">How does the waitlist work for Industry?</summary>
+                <p className="mt-2 text-sm text-gray-700">Industry applications are accepted now and placed on a waitlist until initial Steering Board members are selected. You&apos;ll receive updates and opportunities to contribute components and pilots in the meantime.</p>
+              </details>
+              <details className="rounded-xl border border-gray-200 bg-white p-4">
+                <summary className="cursor-pointer select-none text-sm font-semibold">Can government partners join today?</summary>
+                <p className="mt-2 text-sm text-gray-700">Yes. Government partners can join and participate in pilots, provide governance input, and adopt the Charter to reduce duplication.</p>
+              </details>
+              <details className="rounded-xl border border-gray-200 bg-white p-4">
+                <summary className="cursor-pointer select-none text-sm font-semibold">What are the roles (End User, Contributor, Steering Board)?</summary>
+                <p className="mt-2 text-sm text-gray-700">End Users deploy and benefit from components; Contributors share code/data modules; Steering Board members (limited Industry seats) provide oversight and investment.</p>
+              </details>
+              <details className="rounded-xl border border-gray-200 bg-white p-4">
+                <summary className="cursor-pointer select-none text-sm font-semibold">Where can I read the Charter?</summary>
+                <p className="mt-2 text-sm text-gray-700">We&apos;ll publish the Defense Commons Charter on this site. In the interim, request it via the contact form and we&apos;ll send the latest draft.</p>
+              </details>
+            </div>
+          </section>
         </div>
       </Section>
     </div>

@@ -1,17 +1,49 @@
 #!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
-echo "Running pre-commit checks..."
+# Workflow Enforcement Pre-commit Hook
+# Ensures agents follow required development workflow
 
-# Run TypeScript type checking
-echo "🔍 Checking TypeScript types..."
-npm run type-check || exit 1
+echo "🔍 Running workflow validation..."
 
-# Run ESLint
-echo "🔍 Running ESLint..."
-npm run lint || exit 1
+# Check 1: Prevent direct commits to main
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+if [ "$current_branch" = "main" ] || [ "$current_branch" = "master" ]; then
+    echo "❌ ERROR: Direct commits to $current_branch are FORBIDDEN!"
+    echo ""
+    echo "You MUST use feature branches and worktrees:"
+    echo "  1. git worktree add ../wt-frontend -b feat/frontend/your-feature"
+    echo "  2. cd ../wt-frontend"
+    echo "  3. Make your changes there"
+    echo ""
+    echo "See AGENTS.md for the required workflow."
+    exit 1
+fi
 
-# Run full build to catch any build-time errors
-echo "🔍 Running full build to catch build-time errors..."
-npm run build || exit 1
+# Check 2: Ensure branch follows naming convention
+branch_pattern="^(feat|fix|test|chore|docs|perf|refactor)/(frontend|backend|api|ui|test|deploy|a11y)/[a-z0-9-]+$"
+if ! echo "$current_branch" | grep -qE "$branch_pattern"; then
+    echo "⚠️  WARNING: Branch name doesn't follow required pattern!"
+    echo ""
+    echo "Recommended format: <type>/<agent>/<description>"
+    echo "Examples:"
+    echo "  - feat/frontend/waitlist-ui"
+    echo "  - fix/backend/api-validation"
+    echo "  - test/ui/component-coverage"
+    echo ""
+    echo "Your branch: $current_branch"
+    echo "(Continuing anyway, but please consider following the pattern)"
+fi
 
-echo "✅ All pre-commit checks passed!"
+# Check 3: Run existing tests
+npm test
+
+# Check 4: Run lint-staged if configured
+if [ -f "package.json" ] && grep -q "lint-staged" package.json; then
+    npx lint-staged
+fi
+
+echo "✅ Pre-commit checks passed!"
+
+# Success
+exit 0

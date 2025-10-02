@@ -1,5 +1,28 @@
 # Version History
 
+## v1.1.1 (September 2025)
+
+### Defense Commons Rebranding and Content Refresh
+- **Major rebranding**: Transitioned from ICD to Defense Commons messaging
+- **Homepage redesign**: Complete content overhaul with new sections and structure
+- **New component architecture**: Added dedicated components for each homepage section
+- **Visual fixes**: Resolved h2 text color issues on dark backgrounds with dark-section class
+- **Content structure**: Implemented new hero, Why Defense Commons, role-specific hooks, impact stats, how it works, and closing CTA sections
+
+### Component Updates
+- Created new Hero component with Defense Commons branding
+- Added WhyDefenseCommons component with three pillars
+- Implemented RoleSpecificHooks for four target personas
+- Designed ImpactStats with key metrics display
+- Built HowItWorks three-step process section
+- Added ClosingCTA with dual call-to-action
+
+### Technical Improvements
+- Enhanced Section component with dark-section class for proper text color inheritance
+- Simplified content management by removing experimental editing features
+- Improved component modularity and maintainability
+- Cleaned up dependencies and reduced bundle size
+
 ## v1.1.0 (September 2025)
 
 ### Terminology Alignment and Design Enhancement
@@ -41,7 +64,7 @@
 - Framework documentation with licensing models and technical architecture
 - Get Started guide with onboarding process
 - Contact information and social media integration
-- Professional typography using Playfair Display and Source Sans 3
+- Professional typography using Source Sans 3 for all text
 
 ### Technical Implementation
 - Static site generation for optimal performance

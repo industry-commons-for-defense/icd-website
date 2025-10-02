@@ -8,10 +8,9 @@ import Button from "@/components/ui/Button";
 import AccordionComponent from "@/components/ui/Accordion";
 import { FileText, Download, ExternalLink, Shield, Database, Cpu, Settings } from "lucide-react";
 
-
 export const metadata: Metadata = {
   title: "Components - Industry Commons for Defense",
-  description: "Explore the complete ICD framework components including licenses, templates, governance documents, and technical specifications.",
+  description: "What we use to make collaboration work: licenses, templates, governance, and specs.",
 };
 
 const componentCategories = [
@@ -24,8 +23,8 @@ const componentCategories = [
     borderColor: "border-green-200",
     items: [
       {
-        name: "SW-ICD License v1.0",
-        description: "Software Industry Commons for Defense License",
+        name: "Software",
+        description: "SW-ICD License v1.0",
         type: "Software",
         fileName: "SW-ICD_License_v1.0_May2025.txt",
         content: `# Software Industry Commons for Defense (SW-ICD) License
@@ -100,8 +99,8 @@ The ICD Steering Body may publish updates to this license. Contributors are enco
 *Issued under the authority of the Industry Commons for Defense Steering Body.*`
       },
       {
-        name: "HW-ICD License v1.0",
-        description: "Hardware Industry Commons for Defense License",
+        name: "Hardware",
+        description: "HW-ICD License v1.0",
         type: "Hardware",
         fileName: "HW-ICD_License_v1.0_May2025.txt",
         content: `# Hardware Industry Commons for Defense (HW-ICD) License
@@ -189,8 +188,8 @@ Governed by U.S. federal law and enforced by the ICD Steering Body with escalati
 *Issued under the authority of the Industry Commons for Defense Steering Body.*`
       },
       {
-        name: "Data-ICD License v1.0",
-        description: "Data Industry Commons for Defense License",
+        name: "Data",
+        description: "Data-ICD License v1.0",
         type: "Data",
         fileName: "Data-ICD_License_v1.0_May2025.txt",
         content: `# Data Industry Commons for Defense (Data-ICD) License
@@ -280,8 +279,8 @@ Managed by the ICD Steering Body with input from:
 *Issued under the authority of the Industry Commons for Defense Steering Body.*`
       },
       {
-        name: "Model-ICD License v1.0",
-        description: "AI/ML Model Industry Commons for Defense License",
+        name: "AI/ML Model",
+        description: "Model-ICD License v1.0",
         type: "AI/ML",
         fileName: "Model-ICD_License_v1.0_May2025.txt",
         content: `# Model Industry Commons for Defense (Model-ICD) License
@@ -388,9 +387,9 @@ Overseen by:
     borderColor: "border-blue-200",
     items: [
       {
-        name: "Capability Requirements Data Sheet",
-        description: "Standard template for documenting capability requirements",
-        type: "Software",
+        name: "Requirements",
+        description: "Capability Requirements Data Sheet (CRDS)",
+        type: "General",
         fileName: "ICD_CRDS_Template_v1.0_May2025.txt",
         content: `# ICD Capability Requirements Data Sheet (CRDS) Template
 
@@ -505,8 +504,8 @@ Overseen by:
 *Prepared under ICD Framework v1.0 guidelines*`
       },
       {
-        name: "Capability Requirements Data Sheet (Code)",
-        description: "Template for software-specific capability requirements",
+        name: "Software Requirements",
+        description: "CRDS for Software Components",
         type: "Software",
         fileName: "ICD_CRDS_Code_Template_v1.0_May2025.txt",
         content: `# ICD Capability Requirements Data Sheet - Software/Code Template
@@ -652,8 +651,8 @@ Overseen by:
 *Prepared under ICD Framework v1.0 guidelines for software development*`
       },
       {
-        name: "Hardware Requirements Data Sheet",
-        description: "Template for hardware-specific requirements documentation",
+        name: "Hardware Requirements",
+        description: "Hardware Requirements Data Sheet (HRDS)",
         type: "Hardware",
         fileName: "ICD_HRDS_Template_v1.0_May2025.txt",
         content: `# ICD Hardware Requirements Data Sheet (HRDS) Template
@@ -813,8 +812,8 @@ Overseen by:
 *Prepared under ICD Framework v1.0 guidelines for hardware development*`
       },
       {
-        name: "Hardware Requirements Data Sheet (HW)",
-        description: "Specialized template for hardware component requirements",
+        name: "Component Specs",
+        description: "Hardware Component Specifications",
         type: "Hardware",
         fileName: "ICD_HRDS_HW_Template_v1.0_May2025.txt",
         content: `# ICD Hardware Requirements Data Sheet - Hardware Component Template
@@ -973,9 +972,9 @@ Overseen by:
 *Prepared under ICD Framework v1.0 guidelines for hardware component specification*`
       },
       {
-        name: "Decision Record Template",
-        description: "Architecture Decision Record (ADR) template for technical decisions",
-        type: "Software",
+        name: "Decision Records",
+        description: "Architecture Decision Record (ADR) Template",
+        type: "General",
         fileName: "ICD_Decision_Record_Template.txt",
         content: `# ICD Architecture Decision Record (ADR) Template
 
@@ -1188,9 +1187,9 @@ Overseen by:
 *Prepared under ICD Framework v1.0 ADR guidelines*`
       },
       {
-        name: "Clawback Notification Template",
-        description: "Standard notification template for license violations",
-        type: "Software",
+        name: "Violation Notice",
+        description: "License Violation and Clawback Template",
+        type: "Legal",
         fileName: "ICD_Clawback_Notification_Template.txt",
         content: `# ICD License Violation and Clawback Notification Template
 
@@ -1398,32 +1397,24 @@ This notice is issued under the authority granted to the ICD Steering Body pursu
     borderColor: "border-purple-200",
     items: [
       {
-        name: "Steering Body Charter",
-        description: "Charter establishing the ICD Steering Body governance structure",
-        type: "Governance",
-        fileName: "ICD_Steering_Body_Charter_501c6.txt",
-        content: "# ICD Steering Body Charter\n\n**Version 1.0 – May 2025**\n\n## 1. Purpose and Authority\n\nThe Industry Commons for Defense (ICD) Steering Body is established as the primary governance authority for the ICD Framework..."
+        name: "Governance",
+        description: "Steering Body Charter",
+        fileName: "Steering-Body-Charter.md"
       },
       {
-        name: "Certification Authority Charter",
-        description: "Framework for ICD certification and validation processes",
-        type: "Governance",
-        fileName: "ICD_Certification_Authority_Charter_v1.0.txt",
-        content: "# ICD Certification Authority Charter\n\n**Version 1.0 – May 2025**\n\n## 1. Mission and Scope\n\nThe ICD Certification Authority provides validation and certification services for components within the ICD Framework..."
+        name: "Certification",
+        description: "Certification Authority Charter",
+        fileName: "Certification-Authority-Charter.md"
       },
       {
-        name: "Coalition Disclosure Tiers",
-        description: "Guidelines for information sharing with coalition partners",
-        type: "Governance",
-        fileName: "ICD_Coalition_Disclosure_Tiers_v1.0.txt",
-        content: "# ICD Coalition Disclosure Tiers\n\n**Version 1.0 – May 2025**\n\n## 1. Overview\n\nThis document establishes tiered disclosure guidelines for sharing ICD Framework components with coalition partners..."
+        name: "Coalition Sharing",
+        description: "Coalition Disclosure Tiers",
+        fileName: "Coalition-Disclosure-Tiers.md"
       },
       {
-        name: "Emergency Override Protocols",
-        description: "Procedures for emergency access and override situations",
-        type: "Governance",
-        fileName: "ICD_Emergency_Override_Protocols_v1.0.txt",
-        content: "# ICD Emergency Override Protocols\n\n**Version 1.0 – May 2025**\n\n## 1. Purpose\n\nThese protocols define emergency procedures for accessing ICD-licensed assets during crisis situations..."
+        name: "Emergency Access",
+        description: "Emergency Override Protocols",
+        fileName: "Emergency-Override-Protocols.md"
       }
     ]
   },
@@ -1436,25 +1427,19 @@ This notice is issued under the authority granted to the ICD Steering Body pursu
     borderColor: "border-orange-200",
     items: [
       {
-        name: "Metadata Schema",
-        description: "JSON schema for ICD component metadata",
-        type: "Data",
-        fileName: "metadata-schema.json",
-        content: "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"title\": \"ICD Component Metadata Schema\",\n  \"description\": \"Schema for ICD framework component metadata\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\": { \"type\": \"string\" },\n    \"version\": { \"type\": \"string\" },\n    \"license\": { \"type\": \"string\" }\n  }\n}"
+        name: "Metadata",
+        description: "Component Metadata Schema",
+        fileName: "metadata-schema.json"
       },
       {
-        name: "Federated Audit Ledger Schema",
-        description: "Schema for distributed audit trail management",
-        type: "Data",
-        fileName: "audit-ledger-schema.json",
-        content: "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"title\": \"ICD Federated Audit Ledger Schema\",\n  \"description\": \"Schema for distributed audit trail in ICD framework\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"timestamp\": { \"type\": \"string\" },\n    \"actor\": { \"type\": \"string\" },\n    \"action\": { \"type\": \"string\" }\n  }\n}"
+        name: "Audit Trails",
+        description: "Federated Audit Ledger Schema",
+        fileName: "audit-ledger-schema.json"
       },
       {
-        name: "Model Testing Guidance",
-        description: "Comprehensive guidance for AI/ML model validation and testing",
-        type: "AI/ML",
-        fileName: "Model-Testing-Guidance.md",
-        content: "# ICD Model Testing Guidance\n\n**Version 1.0 – May 2025**\n\n## 1. Overview\n\nThis document provides comprehensive guidance for validating and testing AI/ML models within the ICD Framework..."
+        name: "AI/ML Testing",
+        description: "Model Testing Guidance",
+        fileName: "Model-Testing-Guidance.md"
       }
     ]
   },
@@ -1467,32 +1452,24 @@ This notice is issued under the authority granted to the ICD Steering Body pursu
     borderColor: "border-teal-200",
     items: [
       {
-        name: "Field Deployment Binder",
-        description: "Complete guide for field deployment of ICD components",
-        type: "Operations",
-        fileName: "Field-Deployment-Binder.md",
-        content: "# ICD Field Deployment Binder\n\n**Version 1.0 – May 2025**\n\n## 1. Deployment Overview\n\nThis binder provides comprehensive guidance for deploying ICD framework components in field environments..."
+        name: "Deployment",
+        description: "Field Deployment Binder",
+        fileName: "Field-Deployment-Binder.md"
       },
       {
-        name: "Partner Onboarding Kit",
-        description: "Materials and procedures for onboarding new ICD partners",
-        type: "Operations",
-        fileName: "Partner-Onboarding-Kit.md",
-        content: "# ICD Partner Onboarding Kit\n\n**Version 1.0 – May 2025**\n\n## 1. Welcome to ICD\n\nThis kit contains all materials and procedures needed to onboard new partners into the ICD ecosystem..."
+        name: "Onboarding",
+        description: "Partner Onboarding Kit",
+        fileName: "Partner-Onboarding-Kit.md"
       },
       {
-        name: "FFRDC Onboarding Contract",
-        description: "Standard contract template for FFRDC participation",
-        type: "Legal",
-        fileName: "FFRDC-Onboarding-Contract.md",
-        content: "# ICD FFRDC Onboarding Contract Template\n\n**Version 1.0 – May 2025**\n\n## 1. Contract Overview\n\nThis template provides standard contract language for FFRDC participation in ICD programs..."
+        name: "FFRDC Contract",
+        description: "FFRDC Onboarding Template",
+        fileName: "FFRDC-Onboarding-Contract.md"
       },
       {
-        name: "Red Team Activation Playbook",
-        description: "Procedures for security assessment and red team exercises",
-        type: "Security",
-        fileName: "Red-Team-Activation-Playbook.md",
-        content: "# ICD Red Team Activation Playbook\n\n**Version 1.0 – May 2025**\n\n## 1. Red Team Overview\n\nThis playbook outlines procedures for conducting security assessments and red team exercises..."
+        name: "Red Team",
+        description: "Security Assessment Playbook",
+        fileName: "Red-Team-Activation-Playbook.md"
       }
     ]
   }
@@ -1508,19 +1485,18 @@ export default function ComponentsPage() {
       <Section variant="spacious" background="gradient">
         <Container size="md">
           <div className="text-center text-white">
-            <Heading level="h1" className="mb-6 !text-white">
-              ICD Framework Components
+            <Heading level="h1" className="mb-6 text-white">
+              Components
             </Heading>
             <Text variant="large" className="mb-8 text-white">
-              Explore the complete collection of licenses, templates, governance documents, and technical specifications
-              that power the Industry Commons for Defense collaborative framework.
+              What we use to make collaboration work: licenses, templates, governance, and specs.
             </Text>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 href={baseGitHubUrl}
                 variant="secondary"
                 size="lg"
-                className="bg-icd-gold text-primary-950 hover:bg-yellow-400 shadow-xl font-semibold transition-all duration-200 hero-accent-glow"
+                className="bg-white text-primary-800 hover:bg-gray-100"
               >
                 <ExternalLink className="w-5 h-5 mr-2" />
                 View on GitHub
@@ -1530,7 +1506,7 @@ export default function ComponentsPage() {
                 variant="secondary"
                 style="outline"
                 size="lg"
-                className="bg-transparent border-2 border-white hover:bg-white hover:text-primary-950 shadow-xl font-semibold transition-all duration-200 btn-secondary-on-dark"
+                className="border-white text-white hover:bg-white hover:text-primary-800"
               >
                 <Download className="w-5 h-5 mr-2" />
                 Download Archive
@@ -1549,8 +1525,7 @@ export default function ComponentsPage() {
                 ICD Artifacts Repository
               </Heading>
               <Text className="mb-6">
-                This repository establishes a collaborative framework enabling transparent, modular, and sovereign-aligned
-                collaboration across government, FFRDCs, UARCs, and industry partners.
+                Data standards for building and sharing technology across government, labs, and industry.
               </Text>
               <div className="grid md:grid-cols-3 gap-6 text-center">
                 <div>
@@ -1596,7 +1571,7 @@ export default function ComponentsPage() {
                         <div>
                           <Heading level="h3" className="mb-2">{item.name}</Heading>
                           <Text className="mb-4">{item.description}</Text>
-                          {item.type && (
+                          {'type' in item && item.type && (
                             <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${category.bgColor} ${category.color}`}>
                               {item.type}
                             </span>
@@ -1605,7 +1580,7 @@ export default function ComponentsPage() {
                       </div>
 
                       {/* License Content Accordion */}
-                      {item.content && (
+                      {'content' in item && item.content && (
                         <div className="mb-4">
                           <AccordionComponent
                             title="View License Content"
@@ -1624,7 +1599,7 @@ export default function ComponentsPage() {
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-2 lg:flex-col lg:w-48">
                       <Button
-                        href={`${baseGitHubUrl}/blob/main/${item.fileName}`}
+                        href={`${baseGitHubUrl}/blob/main/${'fileName' in item ? item.fileName : ''}`}
                         variant="secondary"
                         size="sm"
                         className="w-full"
@@ -1633,7 +1608,7 @@ export default function ComponentsPage() {
                         View on GitHub
                       </Button>
                       <Button
-                        href={`${rawGitHubUrl}/${item.fileName}`}
+                        href={`${rawGitHubUrl}/${'fileName' in item ? item.fileName : ''}`}
                         variant="secondary"
                         style="outline"
                         size="sm"
