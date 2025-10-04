@@ -1,3 +1,27 @@
+# General Comments
+
+- There are too many unsubstantiated claims throughout.  If a quantified claim in made, show the receipts.
+- There's quite a bit of replicaiton across the various sections.  Are the sections necessary?  Could this be collapsed into a 1-pager?
+- The more I look at it, the more I think this is all too complex.  What's the simplest possible initial solution?
+- Why not partner with a known entity in the open license management community like Apache?  Leverage their infrastructure, experience, lessons learned.  Gain some credibility via name recognition.
+- I see no credible authority here to achieve the desired outcomes within the context of the mission. Why would anyone have confidence in the ICD-F's ability to achieve the stated goals? Everything is built upon a heavy dose of autrustic behaviors that aren't fundamentally incentivized by a credible business case for participants / contributors. The whole "built it and they will come" concept generally doesn't work in my experience.
+- I'm not resonating with the "Governance Structure".  It feels like a lot of bureaucracy and I'm not convinced it is necessary.
+- I recognize there is a documented clawback structure to address violations, but I don't see a credible enforcement mechanism or authority.  How does this actually work?  Who pays for the lawyers required to make it work?  The membership dues are probably too high to not be an obstacle for membership but are too low to pay a bunch of beltway lawyers to drive enforcement.  Feels like a catch-22. Someone needs to find a benevolent benefactor or this probably won't get off the ground.
+- The 2 key components here are the licensing overlay and the infrastructure to realize some of the promised outcomes.
+  - ICD-F seems to handle the licensing part (the cheap stuff).
+  - The ICD-F doesn't seem to have any means or ability to deliver on the infrastructure (the expensive stuff).  Particularly at the CUI and above levels.
+- I'm struggling to understand the adoption and growth business case.
+  - Why would industry ever agree to participate unless mandated by govt?  I'd just use existing OSS structures and public (free to me) repos to achieve my altruistic goals.
+  - I don't see any incentive or credible path for industry to employ their investment dollars at any level above pure unclassified security levels.  Someone (govt?, benevolent benefactor?) would have to provide the controlled repos and make them free to participants.
+  - Then there's the fundamental access hurdles for participants.  Getting a SIPR drop is crazy expensive and takes forever.  Is govt providing the facilities, networking, accounts, data access, etc for various interested participants?  How does ICD-F play a role...if at all?
+  - Let's assume there are bad actors in play (credible and preceived) that are driving the fundamental for ICD-F.  These entities have established value propositions (true or not...irrelevant) and resources at their disposal.  It seems ICD-F will somehow have to replicate or displace these entities or change their behavior.  I think the assumption must be that these entities will ignore, then resist, then fight back to preserve their position of influence.  What are these attack vectors (mostly non-technical) and how will they be defended?
+- There's a ton of work to be done.  What's the backlog?
+  - Recommend a bit of classic engineering be done.  Who are the actors?  What are the elements of the "system architecture"? What are the use cases?
+  - What metrics would be needed to measure success?  Avoid vanity metrics!
+  - Who are the target early adopters?  What value do they bring to help incentivize the next round of adopters?  How do you "cross the chasm"?
+
+
+
 # Industry Commons for Defense Foundation Website
 
 The official website for the Industry Commons for Defense (ICD) Foundation, a 501(c)(6) nonprofit organization dedicated to accelerating defense innovation through collaborative frameworks.
