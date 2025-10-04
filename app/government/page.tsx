@@ -7,6 +7,35 @@ import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
 import { Target, Shield, Clock, Users, AlertTriangle, TrendingDown, CheckCircle, Zap } from "lucide-react";
 
+
+// I've got to be cautious and limit my feedback here as I don't intend to publicly criticize my customers.
+// I'll limit my comments to ICD in this context.
+
+// The numbers used to emphasize the strategic imperative may be valid, but I can't see how they're directly relevant to ICD.
+// Open source licenses exist in the world and haven't done anything to change acquisition timelines or technology refresh cycles.
+// The 'window of vulnerability' doesn't have a clear meaning here to the reader.
+// Of the 4 items shown in the boxes, only "vendor lock-in" is something ICD can directly address, but this could be considered contridictory to the "revenue streams" assertions on the industry page.
+// There are some "very different strategies" being used today regarding acquisition timelines, but a ICD-like licensing structure wouldn't impact that.
+// See the comments on the industry page about collaboration.
+// I can't connect the dots on how ICD would reduce security & audit complexity. It's all about the auditors and in my experience these people hold strong biases against any form of open source (not in total, but pervasively).
+
+// In the "How ICD Transforms Government Acquisition" section, the benefits listed are optimistic, but aren't clearly impacted positively by the existance of ICD.
+// Accelerated Acquisition is arguably already in place through repositories like iron bank, but AOs still employ long drawn out processes to review and uniquely approve software even when sourced from "trusted" repositories.
+// As an OSS advocate who knows how to analyze software, I would agrue the "Enhanced Security Posture" is already freely available today through existing OSS projects.  The challenge is that auditors don't know how to evaluate OSS, and they have a strong bias against it.
+// Mission-Focused Innovation is a laudable goal, but ICD doesn't directly address this.  This is more about program management and acquisition strategy.
+// Preserved Government Rights is a key point, but it's not clear how ICD materially changes the current state.  Government Purpose Rights are already in place and can be applied to any software.
+
+// It seems that to achieve these benefits, there needs to be a significant cultural and procedural shift within government acquisition processes that a license or external non-profit entity alone cannot accomplish.
+
+// Looking at the "Government Purpose Rights + Innovation" section, I'm not seeing how ICD itself changes GPR or incentivizes industry investment.
+// I don't know what is meant by "full operational control" in this context. What is limiting operational control today that ICD would change?
+// I think you're using "No Vendor Lock-in" in a different way than the rest of the world does.  This is generally centered around the cost required to switch vendor solutions, not about the rights to use software.
+// Continuous Innovation is a great goal, but ICD doesn't directly enable this.  This is more about how programs are managed and how acquisition strategies are designed.
+
+// Everything in teh "Mission Impact: Speed of Capability Delivery" section looks like AI slop...made up numbers that might make you feel good but have no real-world credibility.
+// The "Real World Application: Joint All-Domain Command & Control" section is making claims that ICD would solve problems that are more about acquisition strategy, engineering practice, and program management than about software licensing.
+// The fact that ICD doesn't actually exist in practice but you're claiming advantages in a specific program is problematic.  If you want to make a case study, find a real-world example where something like ICD was used and show the actual results.
+
 export const metadata: Metadata = {
   title: "For Government - Industry Commons for Defense",
   description: "How the ICD Framework addresses critical government challenges in defense acquisition, reducing costs and timelines while ensuring security and mission success.",

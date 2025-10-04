@@ -65,7 +65,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${sourceSans.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${sourceSans.variable}`}> 
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body className="font-sans antialiased bg-gray-50">
         <Header />
         <main className="min-h-screen">{children}</main>

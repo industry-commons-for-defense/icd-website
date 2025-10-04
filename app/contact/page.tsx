@@ -6,6 +6,11 @@ import Grid from "@/components/ui/Grid";
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
 
+
+// I really like having a glossary.
+// This needs to be more more.
+// When terms are used in the other pages, they should link to the glossary.
+
 export const metadata: Metadata = {
   title: "Contact - Industry Commons for Defense",
   description: "Get in touch with the ICD Foundation for membership, consulting, partnerships, or general inquiries.",

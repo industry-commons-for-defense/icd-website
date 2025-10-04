@@ -7,6 +7,80 @@ import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
 import { TrendingUp, Shield, Users, Zap, DollarSign, Lock, AlertTriangle, CheckCircle } from "lucide-react";
 
+// Overall, I'm not resonating with the identified industry challenge arguements on how ICD helps resolve them.
+// Industry only behaves in ways they are incntivized or required to behave based on customer direction.
+// A status quo has been estabished based on a long history.  This is a 'conditioned norm' for all parties.
+// Instigating change here is more about changing incentives than anything IMHO.
+// The 'old guard' will resist change...basic human nature.
+// But in the end, industry will behave in their best interests based on opportunities and direction offered to them.
+
+// OK...I'll roll that back a bit.  There are some bad actors without a doubt.
+// Same in the commercial world.  Prime example: Oracle.
+// But in most cases industry works within the customer created landscape with generally positive intent for positive outcomes.
+
+// So, if the claim is there are all these negatives they need to be substantiated.
+
+// The IP Protection concern is real everywhere.  In my experience, the root cause here is conflicting incentives.'
+// Industry needs to invest to create differentiated solutions that give them material advantage when under competition.
+// But govt knows if that differentiated solution is IP protected, their ability to displace them through recompete is diminished.
+// Independent innovation is difficult if not impossible due to lack of credible knowledge / data resulting from basic need-to-know restrictions.
+// IP protection isn't about the code, it's about the idea.  Some of the coolest stuff I've every worked on isn't magic.
+// It's just a novel approach, usually applying a known practice or approach in a a unique way.
+// The IP protection could be violated by a 30 min discussion without sharing any code.
+// I've explored patent protection in our environment and discovered it's almost completely infeasible.
+// USPTO and the courts aren't equipped to evaluate technical innovations in this world.  The "established legal norm" is essentially off the table.
+// An ICD open source license is no replacement for patent protections, so don't imply it may be.
+
+// Complaince complexity is real, but is a fundamental cost of doing business in this domain.
+// There's some crazy stuff going on in the world around this right now...but I won't get into it here for obvious reasons.
+// Bottom line, compliance is real and it has to be an equivalent expectations across the board.
+// The ICD opporutnity here should be offering pre-certified commodity to break down entry bariers.
+// But breaking down these bariers is a govt responsibity.
+// If you want a particular outcome (i.e. RMF compliance), then build a yellow brick road everyone can walk to get there.
+// Make that yellow brick road openly available to all, but don't forgive their responsibility to not swoop in and not break compliance.
+// Working in any domain is a choice that requires investment...our world is no different.
+// Just because I have a cool idea for how to build new logic gates in silicon doesn't mean I get to ignore fundamental thermal constraints and power distribution demands.  It's a package deal you sign up for if you want to play in the domain.
+
+// Revenue model uncertainty isn't a mystery and it isn't driven by industry.
+// The incentive (very real in today's world) drives acquisitions into a LCTA behavior pattern.
+// There are entities explicitly built to exploit this.  This is now where you find technical innovation.
+// In my experience (I can give examples) this doesn't result in positive outcomes.
+// It results in maximizing effort of low skill performers, reducing capability enhancement curves while constructing success theater management practices based on vanity metrics to support a mutual need of contractor and PMO to tell their respective bosses they haven't failed.
+// The other aspect is that many of the innovations needed in this world have no commercial applicability or feasiblity.
+// I've never met anyone out in the real world who needs a global C2 solution for managing diverse radars and satellite constellations.
+// Maybe I just need better friends?
+
+// Limited collaboration is a bit shaky as well.  When incentives are aligned, collaboration happens.
+// We use the term "competimates" in recognition of this.  
+// Everything is situational.  Govt tends to create the situation, as much as or more than industry.
+// Those situations are often driven by security and need-to-know considerations applied in blanket terms rather than an analysis of scope / content.
+// There is certainly room to improve here, particularly for those commodity things mentioned earlier.
+// But busienss leaders aren't making critical decisions around commodity...they assume it will be handled (sometimes to their detriment).
+// Of course there are bad actors here as well.  I've seen some real world cases of industry players trying to sabotage each other.
+
+// The costs shown here need to be substantiated.  I don't doubt they are real, but I need to see the receipts.
+
+// I don't think ICD can actually claim to transform IP, Compliance, Revenue, or Collaboration out of the box.
+// I think it may be an enabler, but the real transformation has to be driven by the parties involved and the ecosystem they work within.
+// The revenue streams is a particular stretch.  I don't see how ICD creates new revenue streams out of thin air.
+// Monitization isn't something that gets easier by establishing a new open source license, it probably makes it harder.
+// Let's assume I offer some cool radar processing IP under ICD.  Someone has to decice to pay me to maintain it.
+// If that decision is in the hands of a COR or PMO, they are going to be looking at the lowest cost option.
+// As a business leader, I'm incentivized to minimize transferability of my IP to competitors as I work to capture the support contract.
+// The commercial open source paradigm doesn't work here.  The likelihood of some 3rd party agreeing to pay for maintenance is very low.
+// Especially if they are a competitor and the capbility is classified.  Lawyers will argue that legally govt owns all classified "data".
+// And we're back to "protect the idea" vs "protect the code" again.  Protecting the idea is what drives to silos / defensiveness / etc.
+// The opportunity for a GOSS / ICD license centers around commodity, not differentiation.
+// As an example, Google open sources various products generally centered around infrastructure and frameworks, not the key IP that drives their business.
+// I don't see how ICD changes this fundamental dynamic.
+// The business case examples need to be substantiated as well.  Incentive structures are what will drive behavior.
+
+// The business case needs real work.  Business case for who?  Doesn't seem to be the contributors, so is it for govt?
+// Some of it I just don't believe to be true.  In my experience govt AOs don't respect pre-assessed compoenents by default.
+// They may take it under advisement, but they still have to do their own due diligence which is the core schedule and cost driver for industry.
+// The ROI improvement is a stretch as well.  I don't see how ICD creates new revenue streams or establishes returns for industry.
+// The estimated market opportunity is just made up.  Show your work here.
+
 export const metadata: Metadata = {
   title: "For Industry - Industry Commons for Defense",
   description: "How the ICD Framework solves critical challenges for defense industry partners, enabling profitable collaboration while protecting IP and reducing compliance burden.",

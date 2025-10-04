@@ -5,6 +5,19 @@ import Card from "@/components/ui/Card";
 import { Heading, Text } from "@/components/ui/Typography";
 import Button from "@/components/ui/Button";
 
+// This needs a full review for scope, clarity, and value proposition.
+// The content is generally well-written, but it needs to be more specific about the benefits and value of the ICD Foundation.
+// Things like the "Core Values" are good, but it isn't clear how ICD-F woudl achieve these.
+// I think it needs to leave the reader with a clear understanding of what the ICD Foundation is, what it does, and why it matters.
+// Why does ICD-F need to exist to realize these goals?
+// Especially since there's a financial cost to membership, it needs to be clear how the proposed benefits will be achieved and what the value is to the member.
+// Then there's the question of authority.
+// It's not clear how an entity like this would have the authority to enforce anything, particularly on the government side or within the broader defense industrial base.
+
+// Probably not for the web site, but I'd like to see a detailed analysis of risk in achieving the stated goals.
+// If I were part of the steering body, I'd want to understand these risks and how they would be mitigated.
+// Progress on these mitigations would weigh heavily on my decision to continue membership.
+
 export const metadata: Metadata = {
   title: "About - Industry Commons for Defense",
   description: "Learn about the ICD Foundation's mission, governance, and leadership in defense technology collaboration.",

@@ -4,6 +4,45 @@ import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 
+
+// I like the fact that this starts by establishing the concept of an overlay license.
+// To me, this is the most important concept to understand about the ICD framework and needs more emphasis and clarity.
+// As a "devops guy" I also like the emphasis on automation and integration into existing workflows, but I'm not sure how ICD actually does this.
+// Are there specific tools or plugins that are provided?  Or is it just a set of guidelines?
+// Guidelines already exist (sometimes imposed as direct IAW requirements on industry already), so what makes ICD different?
+
+// The "Licensing Models" section doesn't add clarity for me and seems duplicative of the "Components" page.
+// I'd suggest more focus on the overlay license concept and how it works in practice.
+// And why is it necessary to have multiple?  Could there be a single overlay license that covers all use cases?
+
+// The "Technical Architecture" section doesn't seem relevant to ICD licensing.  All the things mentioned are good practices, but how do they relate to ICD specifically?
+
+// I'm not sure why "Implementation Phases" is necessary.  It seems like a roadmap for ICD adoption, but doesn't add to understanding the framework itself.
+// I like the idea of showing a roadmap, but that should be a separete document or page.
+
+// The "Supporting Federal Law and Policy" section is good in that it provides traceability to existing mandates.
+// But the details provided under "ICD Implementatoin" make claims that aren't substantiated and don't rely on existance of ICD to achieve.
+// This and the following subsections seem to imply that ICD is providing much more than a licensing overlay.
+// If that's the case, then I'd want to see real-world capability in place (i.e. tools, processes, etc.) that demonstrate these capabilities before making these claims publicly.
+
+// The license comparision is interesting, but doesn't seem accurate.  It seems a bit disingenuous in some areas.
+// For example, I don't see how claims can be made about the relationship between the license and "compliance automation" or "collaborative development".
+// These are processes and tools that exist independently of the license itself and are heavily infulenced by organizational culture and situational incentives.
+// Given the table shows common OSS licenses like MIT and Apache are limited for non-SW, then recommend HW-specific licenses like CERN, Solderpad Hardware License, or TAPR be added for comparison.
+// If ICD is an overlay it should work for those as well.
+// This raises a question of complxity - how does ICD manage overlay compatibility across multiple base open source licenses?
+// It isn't explicit in the license language (i.e. no explicit reference to underlaying licenses), so how is this managed in practice?
+// The big question not being addressed is "who decides what license to use"?  I'd argue it's the bill payer, but that isn't stated anywhere.
+// There are a few bill payer scenarios that could be explored here and each would have different incentives and implications for license selection and management.
+// In the last major acquisition I led, I explicitly added contract language that authorized contribution to open source projects as needed to achieve program goals.
+// In the end this was approved, but I know it was a point of contention for some stakeholders during the selection process.
+// Govt contracting officers and legal teams are going to be very sensitive to anything that could be perceived as giving away IP or creating unintentional obligations.
+// I'd like something here that directly addresses this concern and provides a clear path for govt stakeholders to approve use of ICD (or other OSS licenses) in their programs.
+// Maybe even create a use case and justificaiton to require an open license like ICD for certain types of govt contracts or components within a system to be developed.
+// This may highlight a potential challenge - many individuals who would be involved in the decision making process may not be familiar with open source licensing and its implications.  
+// Further they likely don't have the technical expertise to establish appropriate requirements or evaluate the risks, opportunities, and benefits.
+
+
 export const metadata: Metadata = {
   title: "ICD Collaborative Framework - Industry Commons for Defense",
   description: "Learn about the ICD collaborative framework's core components, licensing models, and technical architecture for defense collaboration.",

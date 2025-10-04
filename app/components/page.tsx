@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import ReactMarkdown from "react-markdown";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import Card from "@/components/ui/Card";
@@ -39,6 +40,7 @@ The SW-ICD License is designed to enable transparent, modular, and sovereign-ali
 ## 2. Scope
 
 This license governs all software artifacts, including:
+
 - Source code
 - Executables
 - Libraries
@@ -1611,9 +1613,9 @@ export default function ComponentsPage() {
                             title="View License Content"
                             content={
                               <div className="bg-gray-50 p-4 rounded-lg">
-                                <pre className="text-sm text-gray-700 whitespace-pre-wrap font-mono">
-                                  {item.content}
-                                </pre>
+                                <div className="text-sm text-gray-700 whitespace-pre-wrap font-mono">
+                                  <ReactMarkdown>{item.content}</ReactMarkdown>
+                                </div>
                               </div>
                             }
                           />
