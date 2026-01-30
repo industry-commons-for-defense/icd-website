@@ -9,8 +9,6 @@ export const CONTACT_EMAIL = "contact@icd-defense.org";
 
 // External URLs
 export const SOCIAL_LINKS = {
-  LINKEDIN: "https://linkedin.com/company/icd-foundation",
-  TWITTER: "https://x.com/ICDFoundation",
   GITHUB: "https://github.com/industry-commons-for-defense"
 };
 

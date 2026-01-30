@@ -108,4 +108,4 @@ For questions about this Code of Conduct:
 
 ---
 
-© 2025 The ICD Foundation. This Code of Conduct is licensed under the SW-ICD License v1.0.
+© 2026 The ICD Foundation. This Code of Conduct is licensed under the SW-ICD License v1.0.

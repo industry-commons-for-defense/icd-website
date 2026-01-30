@@ -152,4 +152,4 @@ For questions, issues, or contributions:
 
 ---
 
-© 2025 The ICD Foundation. All rights reserved. Licensed under SW-ICD License v1.0
+© 2026 The ICD Foundation. All rights reserved. Licensed under SW-ICD License v1.0

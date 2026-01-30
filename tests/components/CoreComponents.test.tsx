@@ -74,7 +74,7 @@ describe('CoreComponents Icon Visibility', () => {
 
     // Test heading structure
     const mainHeading = screen.getByRole('heading', { level: 2 });
-    expect(mainHeading).toHaveTextContent('Core Components');
+    expect(mainHeading).toHaveTextContent('Key ICD Outcomes');
 
     // Test that all sections have proper headings
     const sectionHeadings = screen.getAllByRole('heading', { level: 3 });

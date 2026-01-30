@@ -30,8 +30,6 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { name: "LinkedIn", href: "https://linkedin.com/company/icd-foundation" },
-  { name: "X", href: "https://x.com/ICDFoundation" },
   { name: "GitHub", href: "https://github.com/industry-commons-for-defense" },
 ];
 
